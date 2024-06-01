@@ -1,0 +1,98 @@
+.LoginBgContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.FormContainer {
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  padding-right: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 340px;
+  @media screen and (min-width: 768px) {
+    max-width: 500px;
+  }
+}
+.LoginLogoImage {
+  height: 40px;
+  width: 200px;
+  margin-bottom: 20px;
+  justify-content: center; /* Add this property */
+  display: flex; /* Add this property */
+  margin: 0 auto;
+  
+}
+
+.InputContainer {
+  width: 100%;
+  margin-top: 35px;
+}
+.LabelInput {
+  font-family: "Roboto";
+  font-size: 14px;
+  color: #475569;
+  font-weight: 550;
+}
+.UserInput {
+  font-family: "Roboto";
+  font-size: 15px;
+  color: #475569;
+  outline: none;
+  padding: 5px;
+  height: 30px;
+  width: 100%;
+  border: 1px solid #94a3b8;
+  border-radius: 4px;
+  margin-top: 5px;
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+.CheckboxContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+}
+.ShowPasswordLabel {
+  font-family: "Roboto";
+  font-size: 15px;
+  color: #1e293b;
+}
+.LoginButton {
+  width: 102%;
+  background-color: #4f46e5;
+  border: none;
+  border-radius: 5px;
+  font-family: "Roboto";
+  font-size: 15px;
+  height: 40px;
+  color: #ffffff;
+  margin-top: 20px;
+  
+}
+.SubmitError {
+  font-family: "Roboto";
+  font-size: 12px;
+  color: #ff0b37;
+}
+.Login_p{
+    font-size: 14px;
+    color: #1e293b;
+}
+.Login_p a{
+    color: blue;
+
+}
+.ShowPasswordLabel a{
+    color: blue;
+    margin-left: 240px;
+}
+
