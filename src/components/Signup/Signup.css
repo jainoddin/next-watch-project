@@ -1,0 +1,46 @@
+.recovery-popup {
+  width: 300px;
+  height: 200px;
+  background-color: rgb(241, 241, 241);
+  border-radius: 6px;
+  position: fixed;
+  top: -115%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  text-align: center;
+  padding: 10px 40px 10px;
+  margin-top: 55px;
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+}
+
+.round-icon {
+  border-radius: 50%;
+  background-color: blue;
+  width: 100px;
+  height: 70px;
+  padding-top: 10px;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.recovery-popup .round-icon {
+  position: relative;
+  left: 1%;
+  top: 40%;
+}
+
+.recovery-popup h5 {
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.recovery-popup p {
+  font-size: 15px;
+  color: #475569;
+}
+.open {
+  visibility: visible;
+  top: 30%;
+  transform: translate(-50%, -50%) scale(1);
+}
