@@ -162,6 +162,7 @@ const Signup = () => {
                 <input
                   type="text"
                   className="UserInput"
+                  placeholder="Enter your name"
                   value={FormData.name}
                   name="name"
                   onChange={HandleFormData}
@@ -173,6 +174,7 @@ const Signup = () => {
                 <input
                   type="email"
                   className="UserInput"
+                  placeholder="Enter your email"
                   value={FormData.email}
                   name="email"
                   onChange={HandleFormData}
@@ -184,6 +186,7 @@ const Signup = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   className="UserInput"
+                  placeholder="Enter your password"
                   value={FormData.password}
                   name="password"
                   onChange={HandleFormData}

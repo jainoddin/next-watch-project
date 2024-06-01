@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import cookie from "js-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import Forgetpassword from "../forgotpassword/Forgetpassword";
 
 const Login = () => {
   const [showSubmitError, setShowSubmitError] = useState(false);
@@ -42,6 +43,9 @@ const Login = () => {
       toast.error("Invalid Credentials!");
     }
   };
+  const Forgetpassword=()=>{
+    navigateFunc("/forgetpassword");
+  }
   return (
     <>
       <ToastContainer />
@@ -55,13 +59,14 @@ const Login = () => {
 
             <div className="InputContainer">
               <label className="LabelInput" htmlFor="username">
-                USERNAME
+                USER Email
               </label>
               <input
                 type="text"
                 className="UserInput"
                 value={email}
                 name="Email"
+                placeholder="Enter your email"
                 onChange={(e) => setEmail(e.target.value)}
                 required
               ></input>
@@ -71,6 +76,7 @@ const Login = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 className="UserInput"
+                placeholder="Enter your password"
                 value={password}
                 name="Password"
                 onChange={(e) => setPassword(e.target.value)}
@@ -80,7 +86,7 @@ const Login = () => {
                 <label className="ShowPasswordLabel"> Show Password</label>
                 <label className="ShowPasswordLabel">
                   {" "}
-                  <a>Forget password?</a>
+                  <a onClick={Forgetpassword}>Forget password?</a>
                 </label>
               </div>
               <button className="LoginButton">Login</button>

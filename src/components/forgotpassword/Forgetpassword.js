@@ -215,6 +215,7 @@ const Forgetpassword = () => {
                   type="email"
                   className="UserInput"
                   value={FormData.email}
+                  placeholder="Enter your email"
                   name="email"
                   onChange={HandleFormData}
                   required
