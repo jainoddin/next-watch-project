@@ -6,7 +6,7 @@
   height: 100vh;
 }
 .FormContainer {
-  display: flex;
+  /* desktop styles */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,8 +17,23 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 340px;
-  @media screen and (min-width: 768px) {
-    max-width: 500px;
+
+  /* tablet styles */
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    padding: 15px;
+    padding-right: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    max-width: 340px;
+  }
+
+  /* mobile styles */
+  @media screen and (max-width: 479px) {
+    padding: 10px;
+    padding-right: 15px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    max-width: 250px;
   }
 }
 .LoginLogoImage {
@@ -28,7 +43,6 @@
   justify-content: center; /* Add this property */
   display: flex; /* Add this property */
   margin: 0 auto;
-  
 }
 
 .InputContainer {
@@ -76,24 +90,22 @@
   height: 40px;
   color: #ffffff;
   margin-top: 20px;
-  
 }
 .SubmitError {
   font-family: "Roboto";
   font-size: 12px;
   color: #ff0b37;
 }
-.Login_p{
-    font-size: 14px;
-    color: #1e293b;
+.Login_p {
+  font-size: 14px;
+  color: #1e293b;
 }
-.Login_p a{
-    color: blue;
-
+.Login_p a {
+  color: blue;
 }
-.ShowPasswordLabel a{
-    color: blue;
-    margin-left: 245px;
-    
+.ShowPasswordLabel a {
+  color: blue;
+  position: relative;
+  left: 30%;
 }
 
