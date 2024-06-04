@@ -3,139 +3,230 @@ import Header from "../Header/Header";
 import Sidebar from "../sidebar/Sidebar";
 import "./Home.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
+
+const apiStatusConstants = {
+  initial: 'INITIAL',
+  loading: 'LOADING',
+  success: 'SUCCESS',
+  failure: 'FAILURE'
+};
 
 const Home = () => {
-  const [videosArray, setVideoarray] = useState([]);
-  const navigate = useNavigate();
-  const [input, setinput] = useState("");
+  const [videosArray, setVideosArray] = useState([]);
+  const [originalVideos, setOriginalVideos] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [banner, setBanner] = useState(true);
+  const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial);
 
-  /*const fetchDetails = async () => {
+  const fetchDetails = async () => {
+    setApiStatus(apiStatusConstants.loading);
     try {
-      const response = await axios.get(apilist.getallvideos);
-      setVideoarray(response.data);
+      const response = await axios.get("http://localhost:4000/get-video-details");
+      setVideosArray(response.data);
+      setOriginalVideos(response.data); // Save the original list of videos
+      setApiStatus(apiStatusConstants.success);
     } catch (error) {
       console.log(error);
+      setApiStatus(apiStatusConstants.failure);
     }
-  };*/
-
-  //useEffect(() => {
-   // fetchDetails();
-  //}, []);
-
-  const token = Cookies.get("jwtAuth");
-  console.log(token);
-
-  //useEffect(() => {
-    //if (token === undefined) {
-      //navigate("/auth");
-    //}
-  //}, []);
-
-  const changeBackgroundColor = () => {
-    document.body.style.backgroundColor = isSun && isDark ? "black" : "white";
-    console.log("isSun before toggle: ", isSun);
-
-
-    
   };
 
-  const [isSun, setIsSun] = useState(true);
+  useEffect(() => {
+    fetchDetails();
+  }, []);
 
-  const toggleIcon = () => {
-    console.log("Toggle icon clicked");
-    console.log("isSun before toggle: ", isSun);
-    console.log("isDark before toggle: ", isDark);
-    setIsSun(!isSun);
-    setIsDark(!isDark);
-    console.log("isSun after toggle: ", isSun);
-    console.log("isDark after toggle: ", isDark);
-    changeBackgroundColor();
-  };
-
-  const [isDark, setIsDark] = useState(false);
-
-  const toggleBackgroundColor = () => {
-    setIsDark(!isDark);
-    console.log("isDark before toggle: ", isDark);
-
-  };
-
-  // console.log(videosArray);
-  /*const fetchinputdata = (value) => {
-    const filteredVideos = videosArray.filter((video) => {
+  const fetchInputData = (value) => {
+    const filteredVideos = originalVideos.filter((video) => {
       return (
         value &&
         video &&
         video.video_title &&
-        video.video_title.toLowerCase().includes(value)
+        video.video_title.toLowerCase().includes(value.toLowerCase())
       );
     });
-    setVideoarray(filteredVideos);
 
-
+    setVideosArray(filteredVideos);
   };
-  const handlechange = (value) => {
-    setinput(value);
-    fetchinputdata(value);
 
-  };*/
+  const handleSearch = () => {
+    console.log('Fetching data with input:', inputValue);
+    fetchInputData(inputValue);
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleRetry = () => {
+    setInputValue("");
+    fetchDetails(); // Retry fetching details from the API
+  };
+
+  const bannerClose = () => {
+    setBanner(false);
+  };
+
+  const renderLoadingView = () => (
+    <div className="loader-container">
+      <div className="loader">Loading...</div>
+    </div>
+  );
+
+  const renderFailureView = () => (
+    <div className="failure-view">
+      <p>Failed to load videos. Please try again.</p>
+      <button onClick={handleRetry}>Retry</button>
+    </div>
+  );
+
+  const renderVideosView = () => {
+    return (
+      <div className="container" >
+        <div className="row"  >
+        {videosArray.length > 0 ? (
+          videosArray.map((video) => (
+            <div className="col-md-4 my-4" key={video.id} style={{marginRight:"-40px"}}>
+              <div className="thumbnail_image">
+                <img
+                  style={{ width: "80%" }}
+                  src={video.thumbnail_url}
+                  alt={video.video_title}
+                />
+              </div>
+
+              <div className="home_thumbnail_title d-flex">
+                <div className="channel_logo channellogo">
+                  <img
+                    src={video.channel_logo}
+                    style={{ width: "30px", paddingTop: "10px" }}
+                    alt={video.channel_name}
+                  />
+                </div>
+                <h6 className="my-3 d-flex" style={{ width: "60%" }}>
+                  {video.video_title}
+                </h6>
+              </div>
+
+              <div className="home_channel_description d-flex">
+                <div
+                  className="channel_description"
+                  style={{ paddingLeft: "35px", fontSize: "13px" }}
+                >
+                  <p>{video.channel_name}</p>
+                  <p style={{ marginTop: "-10px", fontSize: "13px" }}>
+                    {video.views_count} views
+                    <span style={{ paddingLeft: "10px" }}>
+                      .&nbsp;&nbsp;&nbsp;&nbsp;{video.published_date}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No videos found</p>
+        )}
+
+        </div>
+      </div>
+    );
+  };
+
+  const renderHomeVideos = () => {
+    switch (apiStatus) {
+      case apiStatusConstants.loading:
+        return renderLoadingView();
+      case apiStatusConstants.success:
+        return renderVideosView();
+      case apiStatusConstants.failure:
+        return renderFailureView();
+      default:
+        return null;
+    }
+  };
 
   return (
     <div id="home-container">
       <section className="nav_bar_component">
         <Header
-          isSun={isSun}
-          changeBackgroundColor={changeBackgroundColor}
-          toggleBackgroundColor={toggleBackgroundColor}
-          toggleIcon={toggleIcon}
-          setIsSun={setIsSun} 
-        />{" "}
+        
+        />
       </section>
       <section className="container-fluid mt-3">
         <div className="row">
-          <div className="col-md-3" >
-
-            
-          <Sidebar isDark={isDark}/>
-          
-          
-          
-          
-          
-                   </div>
+          <div className="col-md-3">
+            <Sidebar/>
+          </div>
           <div className="col-md-9 container" id="a">
-            <section className="banner_component text-center d-flex align-items-center  justify-content-center">
-            <div className="search-box">    
-      <div className="search-main">
-        <div className="BannerContainer">
-          <div className="BannerLeftPart">
-            <div className="BannerImage">
-<img src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"></img>
+            {banner && (
+              <section
+                className="banner_component text-center d-flex align-items-center justify-content-center"
+                style={{ width: "115%" }}
+              >
+                <div className="img-banner">
+                  <img
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                    style={{ width: "120px" }}
+                    alt="banner"
+                  />
+                </div>
+                <p className="text">
+                  Buy Nxt Watch Premium prepaid plans with <br />
+                  <span className="banner-span">UPI</span>
+                </p>
+                <div>
+                  <button className="banner-button">GET IT NOW</button>
+                </div>
+                <div className="banner-icon">
+                  <button className="bannerclose-button" onClick={bannerClose}>
+                    <AiOutlineClose size={25} />
+                  </button>
+                </div>
+              </section>
+            )}
+
+            <div
+              style={{
+                backgroundColor: "#E7E9EB",
+                position: "relative",
+                left: "-90px",
+                top: "-34px",
+                height: "auto",
+                width:"115%"
+                
+              }}
+            >
+              <section
+                className="input_group_search container my-1"
+                style={{ position: "relative", left: "0px", top: "20px" }}
+              >
+                <div className="input-group mb-3" style={{ width: "50%" }}>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search"
+                    aria-label="Search"
+                    aria-describedby="basic-addon2"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                  />
+                  <button
+                    type="button"
+                    className="input-group-text"
+                    id="basic-addon2"
+                    style={{ backgroundColor: "#909090" }}
+                    onClick={handleSearch}
+                  >
+                    <AiOutlineSearch size={20} />
+                  </button>
+                </div>
+              </section>
+
+              <section className="thumbnails_layout" style={{ position: "relative", left: "0px" }}>
+                {renderHomeVideos()}
+              </section>
             </div>
-            <div className="BannerText">
-            <p>Buy Nxt Watch Premium prepaid plans with <br /> UPI</p>
-
-            </div>
-            <div className="BannerButton"><p>GET IT NOW</p></div>
-
-          </div>
-          </div>
-       
-       
-      </div>
-    </div>
-            </section>
-
-            <section className="input_group_search container my-5">
-             <div><h1>aaaaaa</h1></div>
-            </section>
-
-            <section className="thumbnails_layout">
-            <div><h1>bbbbbbbb</h1></div>
-            </section>
           </div>
         </div>
       </section>

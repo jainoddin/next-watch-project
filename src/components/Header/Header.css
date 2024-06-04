@@ -2,6 +2,7 @@
   font-size: 30px;
   position: relative;
   top: 10px;
+  margin-right: 100px;
 }
 
 .user-icon {
@@ -9,6 +10,7 @@
   font-size: 30px;
   width: 100%;
   height: 100%;
+
 }
 
 .form-inline {
@@ -16,60 +18,35 @@
   right: 0px;
   width: 200px;
   height: 100vh;
+  left: 93%;
 }
 body {
   overflow-x: hidden;
 }
-#mobile {
-  display: none;
-}
-#mobile i {
-  align-items: center;
-}
-@media screen and (max-width: 768px) {
+
+
   .form-inline {
-    right: -c200px;
+   width: 0%;
   }
   body {
     overflow-x: hidden;
   }
   .link-bar {
-    position: relative;
-    top: 1%;
-    left: -20%;
-  }
-  .nav-link {
-    position: relative;
-    top: 0%;
-    left: -18%;
-  }
-  .b {
-    position: relative;
-    top: 0%;
-    left: -18%;
-  }
-  .form-inline.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     position: fixed;
-    top: 110px;
-    right: -40px;
-    background-color: rgb(225, 236, 245);
-    width: 200px;
-    height: 25%;
-    padding: 40px 0 0 10px;
+    top: 11px;
+    left: 85.3%;
   }
-  #mobile {
-    display: block;
+  .nav-link{
+    position: fixed;
+    top: -5px;
+    left: 87.5%;
+
   }
-  #mobile {
-    font-size: 24px;
-    cursor: pointer;
-    position: relative;
-    right: 60px;
-  }
-}
+ 
+  
+ 
+ 
+
 body.dark-mode {
   background-color: rgb(48, 47, 47);
 }
@@ -77,6 +54,7 @@ body.dark-mode {
 .navbar {
   position: -webkit-sticky; /* for Safari */
   position: fixed;
+  left: 0%;
   top: 0%;
   z-index: 100;
   width: 100%;
@@ -86,42 +64,4 @@ body.dark-mode {
 button {
   background-color: rgb(144, 201, 197);
 }
-@media screen and (max-width: 320px) {
-  body {
-    overflow-y: scroll;
-  }
-  .link-bar {
-    position: relative;
-    top: -30%;
-    left: 10%;
-  }
-  .nav-link {
-    position: relative;
-    top: -45%;
-    left: 10%;
-    font-size: 10px;
-  }
-  .b {
-    position: relative;
-    top: 40%;
-    left: -38%;
-  }
-  .form-inline.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
-    top: 80px;
-    right: -40px;
-    background-color: rgb(225, 236, 245);
-    width: 150px;
-    height: 32%;
-    padding: 40px 0 0 10px;
-  }
-  #mobile {
-    font-size: 24px;
-    cursor: pointer;
-    position: relative;
-    right: 20px;
-  }
-}
+

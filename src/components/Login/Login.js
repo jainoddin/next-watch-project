@@ -84,7 +84,7 @@ const Login = () => {
               <div lassName="CheckboxContainer">
                 <input type="checkbox" onChange={handleCheckboxChange}></input>
                 <label className="ShowPasswordLabel"> Show Password</label>
-                <label className="ShowPasswordLabel">
+                <label className="forPasswordLabel">
                   {" "}
                   <a onClick={Forgetpassword}>Forget password?</a>
                 </label>
