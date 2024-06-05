@@ -12,6 +12,7 @@ body {
   top: 15%;
   width: 160%;
   left: 25%;
+
 }
 
 @media (max-width: 320px) {
@@ -34,13 +35,13 @@ body {
 
 .img-banner {
   position: absolute;
-  left: 10px;
+  left: 18px;
   top: 10px;
 }
 
 .text {
   position: absolute;
-  left: 10px;
+  left: 18px;
   top: 55px;
   font-size: 23px;
   font-weight: 400;
@@ -48,7 +49,7 @@ body {
 
 .banner-button {
   position: absolute;
-  left: 10px;
+  left: 18px;
   top: 135px;
   background-color: white;
   box-shadow: 1px solid;
@@ -111,6 +112,50 @@ body {
   padding: 5px;
   border: none;
   font-family: Roboto;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.wrapper .loader {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 20px;
+}
+
+.loader .loading {
+  background: #fbfbfc;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  margin: 0 10px;
+  animation: load 0.8s ease infinite;
+
+}
+
+
+.loader .loading.one {
+  animation-delay: 0.3s;
+}
+.loader .loading.two {
+  animation-delay: 0.4s;
+}
+.loader .loading.three {
+  animation-delay: 0.5s;
+}
+
+@keyframes load {
+  0% {
+    width: 30px;
+    height: 30px;
+  }
+  50% {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 

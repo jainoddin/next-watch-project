@@ -4,6 +4,9 @@ import Sidebar from "../sidebar/Sidebar";
 import "./Home.css";
 import axios from "axios";
 import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -18,6 +21,8 @@ const Home = () => {
   const [inputValue, setInputValue] = useState("");
   const [banner, setBanner] = useState(true);
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial);
+  const [bgcolor,setbgcolor]=useState("#909090");
+  const navigate = useNavigate();
 
   const fetchDetails = async () => {
     setApiStatus(apiStatusConstants.loading);
@@ -34,6 +39,15 @@ const Home = () => {
 
   useEffect(() => {
     fetchDetails();
+  }, []);
+
+  const token = Cookies.get("jwtAuth");
+  console.log(token);
+
+  useEffect(() => {
+    if (token === undefined) {
+      navigate("/auth");
+    }
   }, []);
 
   const fetchInputData = (value) => {
@@ -58,25 +72,42 @@ const Home = () => {
     setInputValue(event.target.value);
   };
 
-  const handleRetry = () => {
-    setInputValue("");
-    fetchDetails(); // Retry fetching details from the API
-  };
+  
 
   const bannerClose = () => {
     setBanner(false);
   };
 
+  useEffect(() => {
+    if (apiStatus === apiStatusConstants.loading) {
+      document.body.style.backgroundColor = "blue";
+    } else {
+      document.body.style.backgroundColor = "";
+    }
+  }, [apiStatus]);
+
   const renderLoadingView = () => (
+    
     <div className="loader-container">
-      <div className="loader">Loading...</div>
+    
+      <div className="loader">
+        <section class="wrapper">
+      <div class="loader">
+        <div class="loading one"></div>
+        <div class="loading two"></div>
+        <div class="loading three"></div>
+        <div class="loading four"></div>
+      </div>
+    </section>.</div>
     </div>
+    
   );
 
   const renderFailureView = () => (
     <div className="failure-view">
-      <p>Failed to load videos. Please try again.</p>
-      <button onClick={handleRetry}>Retry</button>
+      <div style={{position:"absolute",top:"80px",left:"20%"}}>
+      <img src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png" style={{width:"60%"}}></img>
+      </div>
     </div>
   );
 
@@ -87,6 +118,8 @@ const Home = () => {
         {videosArray.length > 0 ? (
           videosArray.map((video) => (
             <div className="col-md-4 my-4" key={video.id} style={{marginRight:"-40px"}}>
+              <p>
+               <Link to={`/video/${video._id}`}   style={{ textDecoration: "none"}}>
               <div className="thumbnail_image">
                 <img
                   style={{ width: "80%" }}
@@ -121,8 +154,12 @@ const Home = () => {
                     </span>
                   </p>
                 </div>
+               
               </div>
+              </Link>
+              </p>
             </div>
+           
           ))
         ) : (
           <p>No videos found</p>
@@ -162,7 +199,7 @@ const Home = () => {
             {banner && (
               <section
                 className="banner_component text-center d-flex align-items-center justify-content-center"
-                style={{ width: "115%" }}
+                style={{ width: "115%",position:"relative" ,left:"-9.6%"}}
               >
                 <div className="img-banner">
                   <img
@@ -186,9 +223,9 @@ const Home = () => {
               </section>
             )}
 
-            <div
+            <div className="aaaaaa"
               style={{
-                backgroundColor: "#E7E9EB",
+              
                 position: "relative",
                 left: "-90px",
                 top: "-34px",

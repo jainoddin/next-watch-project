@@ -1,0 +1,57 @@
+#color1 {
+    font-family: serif;
+    color: transparent;
+    animation: effect 2s linear infinite;
+    text-align: bold;
+  }
+  #saved2 {
+    position: absolute;
+    top: 0;
+    left: 93.2%;
+  }
+  
+  @keyframes effect {
+    0% {
+      background: linear-gradient(#008000, #00ff00);
+      -webkit-background-clip: text;
+    }
+  
+    50% {
+      background: linear-gradient(red, #9cd42d);
+      -webkit-background-clip: text;
+    }
+  
+    100% {
+      background: linear-gradient(#3ce7d7, #000fff);
+      -webkit-background-clip: text;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+  /* Default (light mode) styles */
+body {
+  background-color: rgb(249, 249, 249);
+  color: black;
+}
+
+p {
+  color: black;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+body.dark-mode p {
+  color: white; /* Dodger Blue */
+}

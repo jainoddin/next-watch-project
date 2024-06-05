@@ -6,6 +6,10 @@ import Login from "./components/Login/Login.js";
 import Forgetpassword from "./components/forgotpassword/Forgetpassword.js";
 import Header from "./components/Header/Header.js";
 import Sidebar from "./components/sidebar/Sidebar.js";
+import IndividualVideo from "./components/individualVideos/IndividualVideos.js";
+import Trending from "./components/Trending/Trending.js";
+import Gaming from "./components/Gaming/Gaming.js";
+import Saved from "./components/Saved/Saved.js";
 
 
 function App() {
@@ -19,7 +23,16 @@ function App() {
           <Route path="/forgetpassword" element={<Forgetpassword />}></Route>
           <Route path="/head" element={<Header />}></Route>
           <Route path="/side" element={<Sidebar />}></Route>
+          <Route path="/video" element={<IndividualVideo />}></Route>
+          <Route path="/trending" element={<Trending />}></Route>
+          <Route path="/gaming" element={<Gaming />}></Route>
+          <Route path="/saved" element={<Saved />}></Route>
 
+          
+          <Route
+            path="/video/:id"
+            element={<IndividualVideo></IndividualVideo>}
+          ></Route>
 
 
 

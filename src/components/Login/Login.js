@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext  } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,11 +6,13 @@ import cookie from "js-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import Forgetpassword from "../forgotpassword/Forgetpassword";
+import AuthContext from "../context/AuthContext"
 
 const Login = () => {
   const [showSubmitError, setShowSubmitError] = useState(false);
   const navigateFunc = useNavigate();
-  const [email, setEmail] = useState("");
+
+  const { email, setEmail } = useContext(AuthContext);
   const [password, setPassword] = useState("");
   const signup = () => {
     navigateFunc("/signup");

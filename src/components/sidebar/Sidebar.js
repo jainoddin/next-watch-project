@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 import "remixicon/fonts/remixicon.css";
 import "./Sidebar.css";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { HiFire } from "react-icons/hi";
 import { SiYoutubegaming } from "react-icons/si";
 import { CgPlayListAdd } from "react-icons/cg";
+import Cookies from "js-cookie";
 
 const Sidebar = (props) => {
   const navigate = useNavigate();
-  const activeTabBg = props.data ? "#475569" : "#cbd5e1";
-  console.log("sssssssssss", props.data);
-  const [activeTab, setActiveTab] = useState("");
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState("Home"); // Set default active tab to "Home"
+  const activeTabBg = props.data ? "black" : "green";
+
   const [backb, setbackb] = useState("White");
   const [textcolor, setTextcolor] = useState(true);
-  const [active, setactive] = useState("active");
-  const [p, setp] = useState("p");
+
   useEffect(() => {
-    if (props.data == "dark") {
+    if (props.data === "dark") {
       setbackb("black");
       setTextcolor(true);
     } else if (props.data === "white") {
@@ -27,27 +27,31 @@ const Sidebar = (props) => {
     }
   }, [props.data]);
 
-  const [cc, setcc] = useState(textcolor);
-  console.log("color````", textcolor);
+  useEffect(() => {
+    // Update activeTab based on the current path
+    if (location.pathname === "/home") {
+      setActiveTab("Home");
+    } else if (location.pathname === "/trending") {
+      setActiveTab("Trending");
+    } else if (location.pathname === "/gaming") {
+      setActiveTab("Gaming");
+    } else if (location.pathname === "/saved") {
+      setActiveTab("Saved");
+    }
+  }, [location.pathname]);
 
-  const logouthandler = () => {
-    localStorage.removeItem("token");
-    navigate("/");
+  const handleTabClick = (tab, path) => {
+    setActiveTab(tab);
+    navigate(path);
   };
+  const token = Cookies.get("jwtAuth");
+  console.log(token);
 
-  const activeclass2 = () => {
-    setActiveTab("Trending");
-    setactive(null);
-  };
-  const activeclass = () => {
-    setActiveTab("Home");
-  };
-  const activeclass3 = () => {
-    setActiveTab("Gaming");
-  };
-  const activeclass4 = () => {
-    setActiveTab("Saved");
-  };
+  useEffect(() => {
+    if (token === undefined) {
+      navigate("/auth");
+    }
+  }, []);
 
   return (
     <div className={`sidebar-components bgg-${backb}`}>
@@ -59,15 +63,20 @@ const Sidebar = (props) => {
                 <div
                   className={`NavLinkContainer`}
                   style={{
-                    backgroundColor: activeTab === "Home" ? "Lavender" : "",
+                    backgroundColor:
+                      props.data === "dark"
+                        ? ""
+                        : activeTab === "Home"
+                        ? "Lavender"
+                        : "",
                   }}
-                  onClick={activeclass}
+                  onClick={() => handleTabClick("Home", "/home")}
                 >
                   <AiFillHome
                     size={30}
                     color={activeTab === "Home" ? "#ff0b37" : "#909090"}
                   />
-                  <p className="NavText" style={{ marginTop: "20px",color:"#9FACB7" }}>
+                  <p className="NavText" style={{ marginTop: "20px" }}>
                     Home
                   </p>
                 </div>
@@ -75,17 +84,17 @@ const Sidebar = (props) => {
 
               <div className="NavLink">
                 <div
-                  className="NavLinkContainer "
+                  className="NavLinkContainer"
                   style={{
                     backgroundColor: activeTab === "Trending" ? "Lavender" : "",
                   }}
-                  onClick={activeclass2}
+                  onClick={() => handleTabClick("Trending", "/trending")}
                 >
                   <HiFire
                     size={30}
                     color={activeTab === "Trending" ? "#ff0b37" : "#909090"}
                   />
-                  <p className="NavText" style={{ color:"#9FACB7", }}>Trending</p>
+                  <p className="NavText">Trending</p>
                 </div>
               </div>
 
@@ -95,13 +104,13 @@ const Sidebar = (props) => {
                   style={{
                     backgroundColor: activeTab === "Gaming" ? "Lavender" : "",
                   }}
-                  onClick={activeclass3}
+                  onClick={() => handleTabClick("Gaming", "/gaming")}
                 >
                   <SiYoutubegaming
                     size={30}
                     color={activeTab === "Gaming" ? "#ff0b37" : "#909090"}
                   />
-                  <p className="NavText" style={{ color:"#9FACB7", }}>Gaming</p>
+                  <p className="NavText">Gaming</p>
                 </div>
               </div>
 
@@ -111,13 +120,13 @@ const Sidebar = (props) => {
                   style={{
                     backgroundColor: activeTab === "Saved" ? "Lavender" : "",
                   }}
-                  onClick={activeclass4}
+                  onClick={() => handleTabClick("Saved", "/saved")}
                 >
                   <CgPlayListAdd
                     size={30}
                     color={activeTab === "Saved" ? "#ff0b37" : "#909090"}
                   />
-                  <p className="NavText" style={{ color:"#9FACB7", }}>Saved</p>
+                  <p className="NavText">Saved</p>
                 </div>
               </div>
 
@@ -128,9 +137,9 @@ const Sidebar = (props) => {
                   </p>
                 ) : (
                   <p>
-                    <span style={{ color:"#ABCCEB", }}>CONTACT US</span>
+                    <span>CONTACT US</span>
                   </p>
-                )}{" "}
+                )}
               </div>
               <div className="ContactIcons">
                 <img
@@ -146,7 +155,7 @@ const Sidebar = (props) => {
                   src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
                 ></img>
               </div>
-              <div className="ContactNote" style={{ color:"#909090", }}>
+              <div className="ContactNote" style={{ color: "#909090" }}>
                 <p> Enjoy! Now to see your channels and recommendations!</p>
               </div>
             </div>
