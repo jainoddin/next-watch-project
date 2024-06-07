@@ -16,6 +16,7 @@ const IndividualVideo = () => {
   const navigate = useNavigate();// State to manage dark mode
 
   const { id } = useParams();
+  
 
   useEffect(() => {
     fetchVideoDetails();
@@ -53,22 +54,32 @@ const IndividualVideo = () => {
 
   const handlelikeSave = async () => {
     console.log(`Updating video with ID: ${videoDetails._id}`);
+    let success = false;
+  
     try {
-      const response = await axios.put(
-        `http://localhost:4000/updatelikevideo/${videoDetails._id}?liked=true`
-      );
-      console.log("Success:", response);
-      toast.success("Video like Successfully");
-
-      
-
-      window.location.reload();
-
-
+      const response1 = await axios.put(`http://localhost:4000/updatelikevideo/${videoDetails._id}?liked=true`);
+      console.log("First API call success:", response1);
+      success = true; // Mark success if the first call is successful
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error in first API call:", error);
+    }
+  
+    try {
+      const response2 = await axios.put(`http://localhost:4000/updategamminglikevideo/${videoDetails._id}?liked=true`);
+      console.log("Second API call success:", response2);
+      success = true; // Mark success if the second call is successful
+    } catch (error) {
+      console.error("Error in second API call:", error);
+    }
+  
+    // If at least one API call succeeded, reload the page
+    if (success) {
+      toast.success("Video like successfully updated");
+      window.location.reload();
     }
   };
+  
+  
 
   const toggleSavedStatus = async () => {
     const newStatus = videoDetails.saved === "Saved" ? "Unsaved" : "Saved";
@@ -85,13 +96,28 @@ const IndividualVideo = () => {
 
   const handledislikeSave = async () => {
     console.log(`Disliking video with ID: ${videoDetails._id}`);
+    let success = false;
+  
     try {
-      const response = await axios.put(`http://localhost:4000/updatelikevideo/${videoDetails._id}?liked=false`);
-      console.log("Success:", response);
-      toast.error("Video disliked successfully");
-      window.location.reload();
+      const response1 = await axios.put(`http://localhost:4000/updatelikevideo/${videoDetails._id}?liked=false`);
+      console.log("First API call success:", response1);
+      success = true; // Mark success if the first call is successful
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error in first API call:", error);
+    }
+  
+    try {
+      const response2 = await axios.put(`http://localhost:4000/updategamminglikevideo/${videoDetails._id}?liked=false`);
+      console.log("Second API call success:", response2);
+      success = true; // Mark success if the second call is successful
+    } catch (error) {
+      console.error("Error in second API call:", error);
+    }
+  
+    // If at least one API call succeeded, reload the page
+    if (success) {
+      toast.success("Video like successfully updated");
+      window.location.reload();
     }
   };
 

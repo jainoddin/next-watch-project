@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext  } from "react";
+import React, { useState, useCallback, useContext,useEffect  } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -33,7 +33,10 @@ const Login = () => {
       });
       const data = response.data;
 
+      localStorage.setItem("token", data.token);
+
       cookie.set("jwtAuth", data.token);
+      console.log("jwttoken",data.token)
     
       console.log("User Login successfully!");
       toast.success("Logged in Successfully!");
@@ -48,6 +51,10 @@ const Login = () => {
   const Forgetpassword=()=>{
     navigateFunc("/forgetpassword");
   }
+
+
+
+ 
   return (
     <>
       <ToastContainer />

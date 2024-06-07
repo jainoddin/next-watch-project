@@ -14,6 +14,10 @@ body {
   left: 25%;
 
 }
+.banner_component{
+  width: 115%;
+}
+
 
 @media (max-width: 320px) {
   .headline {
@@ -128,8 +132,8 @@ body {
 
 .loader .loading {
   background: #fbfbfc;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 50px;
   margin: 0 10px;
   animation: load 0.8s ease infinite;
@@ -157,6 +161,15 @@ body {
     height: 20px;
   }
 }
+@media only screen and (max-width: 840px) {
+ .row1{
+  display: none;
+ }
+
+  
+  /* Your styles here */
+}
+
 
 
   

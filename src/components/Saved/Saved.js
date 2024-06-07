@@ -30,14 +30,16 @@ const Saved = () => {
   useEffect(() => {
     fetchDetails();
   }, []);
-  const token = Cookies.get("jwtAuth");
-  console.log(token);
+ 
+  const token = localStorage.getItem("token");
+  console.log("Token:", token);
 
   useEffect(() => {
-    if (token === undefined) {
+    console.log("Token in useEffect:", token);
+    if (token === null) {
       navigate("/auth");
     }
-  }, []);
+  }, [token, navigate]);
 
   return (
     <div>

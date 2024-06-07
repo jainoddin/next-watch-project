@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import Header from "../Header/Header";
 import Sidebar from "../sidebar/Sidebar";
 import "./Home.css";
@@ -41,14 +41,27 @@ const Home = () => {
     fetchDetails();
   }, []);
 
-  const token = Cookies.get("jwtAuth");
-  console.log(token);
+
+
+
+//backgroundcolr
+
+
+
+
+
+
+  
+
+  const token = localStorage.getItem("token");
+  console.log("Token:", token);
 
   useEffect(() => {
-    if (token === undefined) {
+    console.log("Token in useEffect:", token);
+    if (token === null) {
       navigate("/auth");
     }
-  }, []);
+  }, [token, navigate]);
 
   const fetchInputData = (value) => {
     const filteredVideos = originalVideos.filter((video) => {
@@ -117,7 +130,7 @@ const Home = () => {
         <div className="row"  >
         {videosArray.length > 0 ? (
           videosArray.map((video) => (
-            <div className="col-md-4 my-4" key={video.id} style={{marginRight:"-40px"}}>
+            <div className="col-md-4" key={video.id} style={{marginRight:"-70px"}}>
               <p>
                <Link to={`/video/${video._id}`}   style={{ textDecoration: "none"}}>
               <div className="thumbnail_image">
@@ -132,11 +145,11 @@ const Home = () => {
                 <div className="channel_logo channellogo">
                   <img
                     src={video.channel_logo}
-                    style={{ width: "30px", paddingTop: "10px" }}
+                    style={{ width: "40px", paddingTop: "10px" }}
                     alt={video.channel_name}
                   />
                 </div>
-                <h6 className="my-3 d-flex" style={{ width: "60%" }}>
+                <h6 className="my-3 d-flex" style={{ width: "71%" ,fontSize:"14px",paddingLeft:"10px"}}>
                   {video.video_title}
                 </h6>
               </div>
@@ -144,7 +157,7 @@ const Home = () => {
               <div className="home_channel_description d-flex">
                 <div
                   className="channel_description"
-                  style={{ paddingLeft: "35px", fontSize: "13px" }}
+                  style={{ paddingLeft: "45px", fontSize: "13px" }}
                 >
                   <p>{video.channel_name}</p>
                   <p style={{ marginTop: "-10px", fontSize: "13px" }}>
@@ -197,9 +210,10 @@ const Home = () => {
           </div>
           <div className="col-md-9 container" id="a">
             {banner && (
+              <div className="row1">
               <section
                 className="banner_component text-center d-flex align-items-center justify-content-center"
-                style={{ width: "115%",position:"relative" ,left:"-9.6%"}}
+                style={{ position:"relative" ,left:"-9.6%"}}
               >
                 <div className="img-banner">
                   <img
@@ -221,6 +235,7 @@ const Home = () => {
                   </button>
                 </div>
               </section>
+              </div>
             )}
 
             <div className="aaaaaa"
@@ -236,7 +251,7 @@ const Home = () => {
             >
               <section
                 className="input_group_search container my-1"
-                style={{ position: "relative", left: "0px", top: "20px" }}
+                style={{ position: "relative", left: "0px", top: "20px",paddingBottom:"20px" }}
               >
                 <div className="input-group mb-3" style={{ width: "50%" }}>
                   <input

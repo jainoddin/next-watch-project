@@ -68,3 +68,41 @@ button {
   display: none;
 }
 
+@media only screen and (max-width: 840px) {
+  .navbar{
+    width: 45%;
+  }
+  
+  /* Your styles here */
+}
+
+
+
+
+
+/* Header.css */
+.header {
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.header.light-theme {
+  background-color: white;
+}
+
+.header.dark-theme {
+  background-color: black;
+}
+
+/* Home.css */
+#home-container {
+  transition: background-color 0.3s ease;
+}
+
+#home-container.light-theme {
+  background-color: white;
+}
+
+#home-container.dark-theme {
+  background-color: black;
+}

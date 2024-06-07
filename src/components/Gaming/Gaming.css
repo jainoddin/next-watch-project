@@ -34,4 +34,58 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
   }
+
+
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  }
+  
+  .wrapper .loader {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0 20px;
+  }
+  
+  .loader .loading {
+    background: #1212e7;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    margin: 0 10px;
+    animation: load 0.8s ease infinite;
+  
+  }
+  
+  
+  .loader .loading.one {
+    animation-delay: 0.3s;
+  }
+  .loader .loading.two {
+    animation-delay: 0.4s;
+  }
+  .loader .loading.three {
+    animation-delay: 0.5s;
+  }
+  
+  @keyframes load {
+    0% {
+      width: 30px;
+      height: 30px;
+    }
+    50% {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  @media only screen and (max-width: 840px) {
+   .row1{
+    display: none;
+   }
+  
+    
+    /* Your styles here */
+  }
   

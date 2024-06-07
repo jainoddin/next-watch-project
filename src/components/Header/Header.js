@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext,useRef } from "react";
 import "remixicon/fonts/remixicon.css";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
@@ -14,30 +14,63 @@ const Header = (props) => {
   const [userData, setUserData] = useState({});
   const { email } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [theme, setTheme] = useState("white");
   const [logo, setLogo] = useState(
     "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
   );
+
+ 
+ 
+// Assuming rectRef is defined elsewhere as a ref to the target element
+
+
 
   const handleClick = () => {
     setClicked(!clicked);
   };
 
   const toggleIcon = () => {
-    setIsSun(!isSun);
-    document.body.classList.toggle("dark-mode", isSun);
-    setTheme(isSun ? "dark" : "white");
+    const newIsSun = !isSun;
+    setIsSun(newIsSun);
+    document.body.classList.toggle("dark-mode", newIsSun);
+    setTheme(newIsSun ? "dark" : "white");
     setLogo(
-      isSun
+      newIsSun
         ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
         : "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+        
     );
+  
+    // Store the state in local storage
+    localStorage.setItem("iconState", newIsSun ? "sun" : "moon");
   };
+  
+  useEffect(() => {
+    const storedIconState = localStorage.getItem("iconState");
+    if (storedIconState === "sun") {
+      setIsSun(true);
+      document.body.classList.add("dark-mode");
+      setTheme("dark");
+      setLogo("https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png");
+    } else if (storedIconState === "moon") {
+      setIsSun(false);
+      document.body.classList.remove("dark-mode");
+      setTheme("white");
+      setLogo("https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png");
+    }
+  }, []);
+  
 
+ 
   const logouthandler = () => {
     localStorage.removeItem("token");
-    navigate("/");
+    setToken(null);  // Update the state to reflect token removal
+    console.log("Token removed:", localStorage.getItem("token") === null); // Should print true
+    navigate("/"); // Navigate after token removal
+    console.log("jwttokenqqqqqq", token);
   };
+  
 
   const fetchDetails = async () => {
     try {
@@ -126,18 +159,19 @@ const Header = (props) => {
         <img
           src={logo}
           alt="Logo"
-          style={{ width: "15%", paddingLeft: "10px" }}
+          style={{ width: "15%", paddingLeft: "10px" }} className="nav-img1"
         />
 
         <form className={`form-inline ${clicked ? "active" : ""}`}>
           <div onClick={toggleIcon} className="link-bar icon-sm">
             {isSun ? (
               <p>
-                <i className="ri-moon-fill"></i>
+                  <i className="ri-sun-line"></i>
+              
               </p>
             ) : (
               <p>
-                <i className="ri-sun-line" style={{ color: "white" }}></i>
+                  <i className="ri-moon-fill"></i>
               </p>
             )}
           </div>

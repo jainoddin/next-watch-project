@@ -30,14 +30,16 @@ const Gaming = () => {
   useEffect(() => {
     fetchDetails();
   }, []);
-  const token = Cookies.get("jwtAuth");
-  console.log(token);
+  
+  const token = localStorage.getItem("token");
+  console.log("Token:", token);
 
   useEffect(() => {
-    if (token === undefined) {
+    console.log("Token in useEffect:", token);
+    if (token === null) {
       navigate("/auth");
     }
-  }, []);
+  }, [token, navigate]);
 
   return (
     <div>
@@ -131,7 +133,17 @@ const Gaming = () => {
                         </div>
                       ))
                     ) : (
-                      <p>No videos found</p>
+                      <div>
+   <div className="loader">
+        <section class="wrapper">
+      <div class="loader">
+        <div class="loading one"></div>
+        <div class="loading two"></div>
+        <div class="loading three"></div>
+        <div class="loading four"></div>
+      </div>
+    </section>.</div>
+                    </div>
                     )}
                   </div>
                 </div>
