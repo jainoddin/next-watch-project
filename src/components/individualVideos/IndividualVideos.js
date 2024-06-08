@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "./IndividualVideos.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import apilist from "../../apilist/Apilist";
+
 
 const IndividualVideo = () => {
   const [videoDetails, setVideoDetails] = useState({ savedStatus: "Not saved" });
@@ -39,8 +41,8 @@ const IndividualVideo = () => {
 
   const fetchVideoDetails = async () => {
     try {
-      const response1 = await axios.get(`http://localhost:4000/individualvideoo/${id}`);
-      const response2 = await axios.get(`http://localhost:4000/individualvideo/${id}`);
+      const response1 = await axios.get( `${apilist.individualgamingvideo}/${id}`);
+      const response2 = await axios.get( `${apilist.individualvideo}/${id}`);
       setVideoDetails({ ...response1.data, ...response2.data });
     } catch (error) {
       console.log(error);
@@ -57,7 +59,7 @@ const IndividualVideo = () => {
     let success = false;
   
     try {
-      const response1 = await axios.put(`http://localhost:4000/updatelikevideo/${videoDetails._id}?liked=true`);
+      const response1 = await axios.put(`${apilist.updatelikevideo}/${videoDetails._id}?liked=true`);
       console.log("First API call success:", response1);
       success = true; // Mark success if the first call is successful
     } catch (error) {
@@ -65,7 +67,7 @@ const IndividualVideo = () => {
     }
   
     try {
-      const response2 = await axios.put(`http://localhost:4000/updategamminglikevideo/${videoDetails._id}?liked=true`);
+      const response2 = await axios.put(`${apilist.updategaminglikevideo}/${videoDetails._id}?liked=true`);
       console.log("Second API call success:", response2);
       success = true; // Mark success if the second call is successful
     } catch (error) {
@@ -84,14 +86,32 @@ const IndividualVideo = () => {
   const toggleSavedStatus = async () => {
     const newStatus = videoDetails.saved === "Saved" ? "Unsaved" : "Saved";
     setVideoDetails({ ...videoDetails, saved: newStatus });
+    let success = false;
 
+    
     try {
-      const response = await axios.put(`http://localhost:4000/videos/${id}/save`, { saved: newStatus });
-      console.log(response);
-      window.location.reload();
+      const response1 = await axios.put(`${apilist.updatesavevideo}/${id}/save`, { saved: newStatus });
+      console.log("First API call success:", response1);
+      success = true; // Mark success if the first call is successful
     } catch (error) {
-      console.log(error);
+      console.error("Error in first API call:", error);
     }
+    try {
+      const response2 = await axios.put(`${apilist.updategamingsavevideo}/${id}/save`, { saved: newStatus });
+      console.log("Second API call success:", response2);
+      success = true; // Mark success if the second call is successful
+    } catch (error) {
+      console.error("Error in second API call:", error);
+    }
+
+    if (success) {
+      toast.success("Video saved successfully updated");
+      window.location.reload();
+    }
+
+
+
+
   };
 
   const handledislikeSave = async () => {
@@ -99,7 +119,7 @@ const IndividualVideo = () => {
     let success = false;
   
     try {
-      const response1 = await axios.put(`http://localhost:4000/updatelikevideo/${videoDetails._id}?liked=false`);
+      const response1 = await axios.put(`${apilist.updateunlikevideo}/${videoDetails._id}?liked=false`);
       console.log("First API call success:", response1);
       success = true; // Mark success if the first call is successful
     } catch (error) {
@@ -107,7 +127,7 @@ const IndividualVideo = () => {
     }
   
     try {
-      const response2 = await axios.put(`http://localhost:4000/updategamminglikevideo/${videoDetails._id}?liked=false`);
+      const response2 = await axios.put(`${apilist.updategamingunlikevideo}/${videoDetails._id}?liked=false`);
       console.log("Second API call success:", response2);
       success = true; // Mark success if the second call is successful
     } catch (error) {

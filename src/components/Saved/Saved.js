@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { CgPlayListAdd } from "react-icons/cg";
 import Cookies from "js-cookie";
+import apilist from "../../apilist/Apilist";
+
 
 const Saved = () => {
   const [videosArray, setVideoarray] = useState([]);
@@ -17,11 +19,14 @@ const Saved = () => {
 
   const fetchDetails = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:4000/get-video-savedetail?saved=Saved"
+      const response1 = await axios.get(
+        apilist.SavedVideos
       );
-      console.log(response.data);
-      setVideoarray(response.data);
+      const response2 = await axios.get(
+        apilist.gamingSavedVideos
+      );
+      console.log(response1.data);
+      setVideoarray([...response1.data, ...response2.data]);
     } catch (error) {
       console.log(error);
     }

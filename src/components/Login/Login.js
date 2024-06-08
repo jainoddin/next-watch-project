@@ -7,6 +7,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import Forgetpassword from "../forgotpassword/Forgetpassword";
 import AuthContext from "../context/AuthContext"
+import apilist from "../../apilist/Apilist";
 
 const Login = () => {
   const [showSubmitError, setShowSubmitError] = useState(false);
@@ -27,7 +28,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:4000/login", {
+      const response = await axios.post(apilist.login, {
         email,
         password,
       });

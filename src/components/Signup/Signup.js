@@ -10,6 +10,8 @@ import {
 import "./Signup.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import apilist from "../../apilist/Apilist";
+
 
 const Signup = () => {
   const [showSubmitError, setShowSubmitError] = useState(false);
@@ -57,7 +59,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/signup", {
+      const response = await fetch(apilist.signup, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(FormData),
@@ -123,7 +125,7 @@ const Signup = () => {
     e.preventDefault();
     if (otpValue == otpcomper) {
       try {
-        const response = await fetch("http://localhost:4000/signup", {
+        const response = await fetch(apilist.signup, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(FormData),

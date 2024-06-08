@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext,useRef } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import "remixicon/fonts/remixicon.css";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import Sidebar from "../sidebar/Sidebar";
 import { InputText } from "primereact/inputtext";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
+import apilist from "../../apilist/Apilist";
 
 const Header = (props) => {
   const [clicked, setClicked] = useState(false);
@@ -20,11 +21,7 @@ const Header = (props) => {
     "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
   );
 
- 
- 
-// Assuming rectRef is defined elsewhere as a ref to the target element
-
-
+  // Assuming rectRef is defined elsewhere as a ref to the target element
 
   const handleClick = () => {
     setClicked(!clicked);
@@ -39,47 +36,47 @@ const Header = (props) => {
       newIsSun
         ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
         : "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-        
     );
-  
+
     // Store the state in local storage
     localStorage.setItem("iconState", newIsSun ? "sun" : "moon");
   };
-  
+
   useEffect(() => {
     const storedIconState = localStorage.getItem("iconState");
     if (storedIconState === "sun") {
       setIsSun(true);
       document.body.classList.add("dark-mode");
       setTheme("dark");
-      setLogo("https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png");
+      setLogo(
+        "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
+      );
     } else if (storedIconState === "moon") {
       setIsSun(false);
       document.body.classList.remove("dark-mode");
       setTheme("white");
-      setLogo("https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png");
+      setLogo(
+        "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+      );
     }
   }, []);
-  
 
- 
   const logouthandler = () => {
     localStorage.removeItem("token");
-    setToken(null);  // Update the state to reflect token removal
+    setToken(null); // Update the state to reflect token removal
     console.log("Token removed:", localStorage.getItem("token") === null); // Should print true
     navigate("/"); // Navigate after token removal
     console.log("jwttokenqqqqqq", token);
   };
-  
 
   const fetchDetails = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/get-user-details");
+      const response = await axios.get(apilist.getuserdetils);
       setUserData(response.data);
       console.log("userData:", response.data);
 
       // Fetch the user's image
-      const imageResponse = await axios.get(`http://localhost:4000/get-image/${email}`);
+      const imageResponse = await axios.get(`${apilist.getimg}/${email}`);
       console.log("imageResponse:", imageResponse.data);
 
       if (imageResponse.data.status === "ok") {
@@ -115,7 +112,7 @@ const Header = (props) => {
 
         // Send the image and user_id to the backend
         try {
-          const response = await fetch("http://localhost:4000/upload-image", {
+          const response = await fetch(apilist.uploadimg, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -159,19 +156,19 @@ const Header = (props) => {
         <img
           src={logo}
           alt="Logo"
-          style={{ width: "15%", paddingLeft: "10px" }} className="nav-img1"
+          style={{ width: "15%", paddingLeft: "10px" }}
+          className="nav-img1"
         />
 
         <form className={`form-inline ${clicked ? "active" : ""}`}>
           <div onClick={toggleIcon} className="link-bar icon-sm">
             {isSun ? (
               <p>
-                  <i className="ri-sun-line"></i>
-              
+                <i className="ri-sun-line"></i>
               </p>
             ) : (
               <p>
-                  <i className="ri-moon-fill"></i>
+                <i className="ri-moon-fill"></i>
               </p>
             )}
           </div>
@@ -185,7 +182,7 @@ const Header = (props) => {
                 borderRadius: "50%",
                 position: "relative",
                 top: "13px",
-                cursor: "pointer" // Add cursor pointer
+                cursor: "pointer", // Add cursor pointer
               }}
               onClick={handleImageClick} // Add onClick event handler
               onError={() => console.error("Image failed to load")}
@@ -216,8 +213,3 @@ const Header = (props) => {
 };
 
 export default Header;
-
-
-
-
-

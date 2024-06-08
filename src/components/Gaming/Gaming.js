@@ -9,6 +9,8 @@ import { SiYoutubegaming } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import apilist from "../../apilist/Apilist";
+
 
 const Gaming = () => {
   const [videosArray, setVideoarray] = useState([]);
@@ -18,7 +20,7 @@ const Gaming = () => {
   const fetchDetails = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/get-video-by-queryy?category=Gaming"
+        apilist.gamingvideos
       );
       console.log(response.data);
       setVideoarray(response.data);
@@ -134,17 +136,17 @@ const Gaming = () => {
                       ))
                     ) : (
                       <div>
-   <div className="loader">
-        <section class="wrapper">
+         
+         <section class="wrapper" style={{backgroundColor:"blue",width:"500%" }}>
       <div class="loader">
         <div class="loading one"></div>
         <div class="loading two"></div>
         <div class="loading three"></div>
         <div class="loading four"></div>
       </div>
-    </section>.</div>
-                    </div>
-                    )}
+    </section>
+                      </div>
+              )}
                   </div>
                 </div>
               </section>

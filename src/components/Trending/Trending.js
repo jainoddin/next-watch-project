@@ -9,6 +9,8 @@ import { HiFire } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import apilist from "../../apilist/Apilist";
+
 
 const Trending = () => {
   const [videosArray, setVideoarray] = useState([]);
@@ -18,7 +20,7 @@ const Trending = () => {
   const fetchDetails = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/get-video-by-query?category=Trending"
+        apilist.trendingvideos
       );
       console.log(response.data);
       setVideoarray(response.data);
@@ -81,7 +83,8 @@ const Trending = () => {
                     </span>
                   </h1>
                 </div>
-                {videosArray.map((video) => (
+                {videosArray.length > 0 ? (
+                videosArray.map((video) => (
                   <Link
                     to={`/video/${video._id}`}
                     style={{ textDecoration: "none" }}
@@ -138,7 +141,19 @@ const Trending = () => {
                       </div>
                     </div>
                   </Link>
-                ))}
+                ))) : (
+                  <div>
+     
+     <section class="wrapper" style={{backgroundColor:"blue",width:"120%" }}>
+  <div class="loader">
+    <div class="loading one"></div>
+    <div class="loading two"></div>
+    <div class="loading three"></div>
+    <div class="loading four"></div>
+  </div>
+</section>
+                  </div>
+          )}
               </section>
             </div>
           </div>
