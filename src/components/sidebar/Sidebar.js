@@ -7,6 +7,8 @@ import { HiFire } from "react-icons/hi";
 import { SiYoutubegaming } from "react-icons/si";
 import { CgPlayListAdd } from "react-icons/cg";
 import Cookies from "js-cookie";
+import { AiFillLike } from "react-icons/ai";
+
 
 const Sidebar = (props) => {
   const navigate = useNavigate();
@@ -37,6 +39,9 @@ const Sidebar = (props) => {
       setActiveTab("Gaming");
     } else if (location.pathname === "/saved") {
       setActiveTab("Saved");
+    }
+    else if (location.pathname === "/Liked") {
+      setActiveTab("Liked");
     }
   }, [location.pathname]);
 
@@ -129,6 +134,22 @@ const Sidebar = (props) => {
                     color={activeTab === "Saved" ? "#ff0b37" : "#909090"}
                   />
                   <p className="NavText">Saved</p>
+                </div>
+              </div>
+
+              <div className="NavLink">
+                <div
+                  className="NavLinkContainer"
+                  style={{
+                    backgroundColor: activeTab === "Liked" ? "Lavender" : "",
+                  }}
+                  onClick={() => handleTabClick("Liked", "/Liked")}
+                >
+                  <AiFillLike 
+                    size={30}
+                    color={activeTab === "Liked" ? "#ff0b37" : "#909090"}
+                  />
+                  <p className="NavText">Liked</p>
                 </div>
               </div>
 

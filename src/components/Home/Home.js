@@ -75,6 +75,11 @@ const Home = () => {
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
+  const handlechange = (value) => {
+    
+    setInputValue(value);
+
+  };
 
   const bannerClose = () => {
     setBanner(false);
@@ -122,9 +127,9 @@ const Home = () => {
           {videosArray.length > 0 ? (
             videosArray.map((video) => (
               <div
-                className="col-md-4"
+                className="col-md-4 x"
                 key={video.id}
-                style={{ marginRight: "-70px" }}
+                style={{ marginRight: "-20px" }}
               >
                 <p>
                   <Link
@@ -133,7 +138,7 @@ const Home = () => {
                   >
                     <div className="thumbnail_image">
                       <img
-                        style={{ width: "80%" }}
+                        style={{ width: "100%" }}
                         src={video.thumbnail_url}
                         alt={video.video_title}
                       />
@@ -205,8 +210,8 @@ const Home = () => {
       </section>
       <section className="container-fluid mt-3">
         <div className="row">
-          <div className="col-md-3">
-            <Sidebar />
+          <div className="col-md-3" id="sss">
+            <Sidebar className="www" />
           </div>
           <div className="col-md-9 container" id="a">
             {banner && (
@@ -268,14 +273,17 @@ const Home = () => {
                     aria-label="Search"
                     aria-describedby="basic-addon2"
                     value={inputValue}
-                    onChange={handleInputChange}
+                    onChange={(e) => {
+                      handlechange(e.target.value);
+                      handleSearch();
+                    }}
                   />
                   <button
                     type="button"
                     className="input-group-text"
                     id="basic-addon2"
                     style={{ backgroundColor: "#909090" }}
-                    onClick={handleSearch}
+                   
                   >
                     <AiOutlineSearch size={20} />
                   </button>

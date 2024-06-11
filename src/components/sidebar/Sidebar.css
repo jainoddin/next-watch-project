@@ -1,46 +1,178 @@
 .sidebar-components {
     
-    height: 200vh;
-    display: flex;
-    position: fixed;
-    top: 0%;
-    width: 19.2%;
-    left: 0;
+  height: 200vh;
+  display: flex;
+  position: fixed;
+  top: 0%;
+  width: 19.2%;
+  left: 0;
+
  
-   
+}
+
+.bgg-white {
+  background-color: white;
+}
+
+.bgg-black {
+  background-color: rgb(57, 58, 58);
+}
+.bc-black{
+  color: black;
+
+}
+.bc-white{
+  color: white;
+  
+}
+
+/* Add more styles as needed */
+
+
+/* Add this to your CSS file */
+
+
+
+
+
+
+.dark-mode {
+  background-color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.NavBar{
+display: flex;
+}
+.NavigationLgContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  height: 92%;
+  position: fixed;
+  margin-top: 60px;
+  @media screen and (max-width: 768px) {
+    display: none;
   }
+}
+.NavOptions{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  list-style-type: none;
+  padding: 0px;
+  margin-top: 0px;
+  
+}
+.NavLink{
+  text-decoration: none;
+}
+.NavLinkContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
+}
+.active{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
+  background-color:Lavender ;
+}
+.NavText{
+  font-family: 'Roboto';
+font-size: 18px;
+margin-left: 15px;
+margin-top: 15px;
+
+}
+.ContactInfo{
+  display: flex;
+flex-direction: column;
+padding-left: 20px;
+}
+.ContactHeading{
+  font-family: 'bold';
+  font-size: 25px;
+  font-weight: bold;
+  position: relative;
+  top: 30%;
+  left: 15px;
  
-  .bgg-white {
-    background-color: white;
-  }
-  
-  .bgg-black {
-    background-color: rgb(57, 58, 58);
-  }
-  .bc-black{
-    color: black;
+}
+.p{
+  color: white;
+}
+.an{
+  color: rgb(2 6 23);
+ 
+}
+.ContactIcons{
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 30%;
+  left: 15px;
 
-  }
-  .bc-white{
-    color: white;
-    
-  }
-  
-  /* Add more styles as needed */
-  
-  
-  /* Add this to your CSS file */
-  
-  
-  
-  
+}
+.ContactImage{
+  height: 25px;
+  width: 25px;
+  border-radius: 50px;
+  margin-right: 10px;
 
-  
-  .dark-mode {
-    background-color: black;
+}
+.ContactNote{
+ 
+font-size: 18px;
+font-weight: 400;
+position: relative;
+  top: 32%;
+  left: 15px;
+}
+.NavigationSmallContainer{
+  display: flex;
+  width: 100%;
+  height: 60px;
+  justify-content: space-between;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    display: none;
   }
+}
 
-  
+
+
+.text-white {
+  color: white!important;
+}
+
+.text-black {
+  color: black!important;
+}
+
+
 
 
 
@@ -114,7 +246,7 @@
     font-size: 25px;
     font-weight: bold;
     position: relative;
-    top: 30%;
+    top: 23%;
     left: 15px;
    
   }
@@ -129,7 +261,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    top: 30%;
+    top: 23%;
     left: 15px;
   
   }
@@ -142,10 +274,10 @@
   }
   .ContactNote{
    
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   position: relative;
-    top: 32%;
+    top: 25%;
     left: 15px;
   }
   .NavigationSmallContainer{

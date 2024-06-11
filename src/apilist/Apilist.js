@@ -1,9 +1,9 @@
-export const server = `https://nxt-watch-server.onrender.com`;
+export const server = `http://localhost:4000`;
 
 const apilist = {
   login: `${server}/login`,
   signup: `${server}/signup`,
-  
+
   individualvideo: `${server}/individualvideo`,
   individualgamingvideo: `${server}/individualvideoo`,
 
@@ -24,6 +24,9 @@ const apilist = {
 
   SavedVideos: `${server}/get-video-savedetail?saved=Saved`,
   gamingSavedVideos: `${server}/get-video-savedetaill?saved=Saved`,
+
+  likevideosss: `${server}/get-likevideo-by-queryy?liked=true`,
+  gaminglikevideos: `${server}/get-video-by-queryy?liked=true`,
 
   getuserdetils: `${server}/get-user-details`,
   getimg: `${server}/get-image`,

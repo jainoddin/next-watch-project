@@ -69,7 +69,7 @@ const Gaming = () => {
                 className="input_group_search container my-1"
                 style={{ position: "relative", left: "-30px", top: "-20px" }}
               >
-                <div style={{ paddingBottom: "10px" }}>
+                <div style={{ paddingBottom: "10px" ,paddingLeft:"20px"}}>
                   <h1>
                   <SiYoutubegaming
                     size={45} color="red" 
@@ -78,7 +78,7 @@ const Gaming = () => {
                       style={{
                         position: "relative",
                         top: "3.5px",
-                        left: "5px",
+                        left: "10px",
                       }}
                     >
                       Gaming
@@ -90,9 +90,9 @@ const Gaming = () => {
                     {videosArray.length > 0 ? (
                       videosArray.map((video) => (
                         <div
-                          className="col-md-4 my-0"
+                          className="col-md-4 my-2"
                           key={video.id}
-                          style={{ marginRight: "-0px" }}
+                          style={{ marginRight: "0px"}}
                         >
                           <p>
                             <Link
@@ -137,7 +137,7 @@ const Gaming = () => {
                     ) : (
                       <div>
          
-         <section class="wrapper" style={{backgroundColor:"blue",width:"500%" }}>
+         <section class="wrapper" style={{backgroundColor:"blue",width:"550%" }}>
       <div class="loader">
         <div class="loading one"></div>
         <div class="loading two"></div>

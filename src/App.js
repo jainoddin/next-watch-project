@@ -10,6 +10,7 @@ import IndividualVideo from "./components/individualVideos/IndividualVideos.js";
 import Trending from "./components/Trending/Trending.js";
 import Gaming from "./components/Gaming/Gaming.js";
 import Saved from "./components/Saved/Saved.js";
+import Liked from "./components/Liked/Liked.js";
 
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
           <Route path="/trending" element={<Trending />}></Route>
           <Route path="/gaming" element={<Gaming />}></Route>
           <Route path="/saved" element={<Saved />}></Route>
+          <Route path="/Liked" element={<Liked />}></Route>
+
 
           
           <Route

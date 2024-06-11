@@ -136,7 +136,7 @@ const Trending = () => {
                             left: "10px",
                           }}
                         >
-                          26K views<span> . Nov 29, 2016</span>
+                          {video.views_count} views<span> . {video.published_date}</span>
                         </p>
                       </div>
                     </div>
