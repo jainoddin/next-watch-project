@@ -11,6 +11,9 @@ import { AiFillLike } from "react-icons/ai";
 
 
 const Sidebar = (props) => {
+  useEffect(() => {
+    document.body.style.overflowX = 'hidden';
+  }, []);
   const navigate = useNavigate();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("Home"); // Set default active tab to "Home"

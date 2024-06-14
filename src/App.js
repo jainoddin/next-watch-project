@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Signup from "./components/Signup/Signup.js";
@@ -14,6 +16,9 @@ import Liked from "./components/Liked/Liked.js";
 
 
 function App() {
+  useEffect(() => {
+    document.body.style.overflowX = 'hidden';
+  }, []);
   return (
     <>
    

@@ -1,22 +1,37 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import "remixicon/fonts/remixicon.css";
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar";
 import { InputText } from "primereact/inputtext";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
 import apilist from "../../apilist/Apilist";
+import { AiFillHome } from "react-icons/ai";
+import { HiFire } from "react-icons/hi";
+import { SiYoutubegaming } from "react-icons/si";
+import { CgPlayListAdd } from "react-icons/cg";
+import { AiFillLike } from "react-icons/ai";
+
+
+
 
 const Header = (props) => {
+  useEffect(() => {
+    document.body.style.overflowX = 'hidden';
+  }, []);
   const [clicked, setClicked] = useState(false);
   const [isSun, setIsSun] = useState(true);
   const [image, setImage] = useState("");
   const [userData, setUserData] = useState({});
   const { email } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [siderbar,setsidebar]=useState(false)
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [theme, setTheme] = useState("white");
+  const [activeTab, setActiveTab] = useState("Home"); // Set default active tab to "Home"
+  const location = useLocation();
+
   const [logo, setLogo] = useState(
     "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
   );
@@ -26,6 +41,23 @@ const Header = (props) => {
   const handleClick = () => {
     setClicked(!clicked);
   };
+
+
+  useEffect(() => {
+    // Update activeTab based on the current path
+    if (location.pathname === "/home") {
+      setActiveTab("Home");
+    } else if (location.pathname === "/trending") {
+      setActiveTab("Trending");
+    } else if (location.pathname === "/gaming") {
+      setActiveTab("Gaming");
+    } else if (location.pathname === "/saved") {
+      setActiveTab("Saved");
+    }
+    else if (location.pathname === "/Liked") {
+      setActiveTab("Liked");
+    }
+  }, [location.pathname]);
 
   const toggleIcon = () => {
     const newIsSun = !isSun;
@@ -147,6 +179,23 @@ const Header = (props) => {
     fileInput.click();
   };
 
+
+  const handleTabChange2=()=>{
+    navigate("/trending")
+  }
+  const handleTabChange1=()=>{
+    navigate("/home")
+  }
+  const handleTabChange3=()=>{
+    navigate("/gaming")
+  }
+  const handleTabChange4=()=>{
+    navigate("/saved")
+  }
+  const handleTabChange5=()=>{
+    navigate("/Liked")
+  }
+
   return (
     <div className="header">
       <nav
@@ -156,7 +205,7 @@ const Header = (props) => {
         <img
           src={logo}
           alt="Logo"
-          style={{ width: "15%", paddingLeft: "10px" }}
+          style={{  paddingLeft: "10px" }}
           className="nav-img1"
         />
 
@@ -205,8 +254,40 @@ const Header = (props) => {
           </button>
         </form>
       </nav>
+
+
+
+
+      
+      <nav className="navbar2">
+        <div>
+          <ul>
+            <li> <button onClick={handleTabChange1} style={{border:"none",backgroundColor:"rgb(235, 231, 231)"}}><AiFillHome className="c1"  color={activeTab === "Home" ? "#ff0b37" : "#909090"}   name="Home" /> </button></li>
+
+            <li> <button onClick={handleTabChange2} style={{border:"none",backgroundColor:"rgb(235, 231, 231)"}}><HiFire className="c1" color={activeTab === "Trending" ? "#ff0b37" : "#909090"} /></button></li>
+            <li><button  onClick={handleTabChange3} style={{border:"none",backgroundColor:"rgb(235, 231, 231)"}}><SiYoutubegaming className="c1" color={activeTab === "Gaming" ? "#ff0b37" : "#909090"}></SiYoutubegaming></button></li>
+            <li><button  onClick={handleTabChange4}  style={{border:"none",backgroundColor:"rgb(235, 231, 231)"}}><CgPlayListAdd className="c1" color={activeTab === "Saved" ? "#ff0b37" : "#909090"}></CgPlayListAdd></button></li>
+            <li><button  onClick={handleTabChange5} style={{border:"none",backgroundColor:"rgb(235, 231, 231)"}}><AiFillLike className="c1"  color={activeTab === "Liked" ? "#ff0b37" : "#909090"}></AiFillLike></button></li>
+          </ul>
+        </div>
+
+      </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div style={{ position: "fixed", top: "600%", left: "40%" }}>
-        <Sidebar data={theme}></Sidebar>
+        {!siderbar ?(<Sidebar data={theme}></Sidebar>) : (<></>)}
+
       </div>
     </div>
   );

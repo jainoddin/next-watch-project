@@ -125,7 +125,7 @@ const Signup = () => {
     e.preventDefault();
     if (otpValue == otpcomper) {
       try {
-        const response = await fetch(apilist.signup, {
+        const response = await fetch("http://localhost:4000/signup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(FormData),

@@ -1,46 +1,40 @@
+/* General styles for body */
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100vh; /* Ensure body takes full viewport height */
+  margin: 0; /* Reset margin */
+  padding: 0; /* Reset padding */
+}
+
+/* Home container overflow settings */
 .home-container {
   overflow-x: hidden;
 }
 
-body {
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
+/* Position and width adjustments for #a */
 #a {
-  position: absolute;
+  position: relative;
   top: 15%;
-  width: 160%;
-  left: 25%;
-
-}
-.banner_component{
-  width: 115%;
+  width: 100%;
+  left: 0;
 }
 
-
-@media (max-width: 320px) {
-  .headline {
-    justify-content: center;
-    width: 100%;
-  }
-}
-
-/* img banner */
+/* Banner component styles */
 .banner_component {
+  width: 120%;
   height: 30vh;
   background-image: url("https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png");
-  background-size: 1200px 200px;
-  position: relative; /* Ensure parent has relative position */
-  left: -90px;
-  top: -30px;
-  width: 130%; /* Ensure parent container has a defined width */
+  background-size: cover;
+  position: relative;
+  left: 0;
+  top: 0;
 }
 
 .img-banner {
   position: absolute;
   left: 18px;
-  top: 10px;
+  top: 15px;
 }
 
 .text {
@@ -68,40 +62,46 @@ body {
 
 .bannerclose-button {
   position: absolute;
-  top: -99px; /* Ensure top has units */
-  left: 990px; /* Adjust left position as needed */
+  top: -79px;
+  left: 989px;
   background-color: white;
   border: none;
   cursor: pointer;
-  padding: 18px;
+  padding: 1px;
   z-index: 10;
   padding-left: 10px;
   margin-right: 90px;
 }
-.channellogo{
-  justify-content: center;
- padding-top: 10px;
- padding-right: 5px;
-}
-
-
 
 .banner-icon {
   position: absolute;
   left: 0%;
 }
-.SearchContainer{
+
+/* Channel logo adjustments */
+.channellogo {
+  justify-content: center;
+  padding-top: 10px;
+  padding-right: 5px;
+}
+
+/* Search container adjustments */
+.SearchContainer {
   display: flex;
   border: 1px solid #909090;
   border-radius: 3px;
   margin: 20px;
   width: 90%;
   height: 40px;
-  @media screen and (min-width: 576px) {
+}
+
+@media screen and (min-width: 576px) {
+  .SearchContainer {
     width: 40%;
   }
 }
-.SearchIconContainer{
+
+.SearchIconContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,7 +109,8 @@ body {
   width: 70px;
   border: none;
 }
-.SearchInput{
+
+.SearchInput {
   background: none;
   width: 100%;
   outline: none;
@@ -117,6 +118,8 @@ body {
   border: none;
   font-family: Roboto;
 }
+
+/* Loader styles */
 .wrapper {
   display: flex;
   justify-content: center;
@@ -137,16 +140,16 @@ body {
   border-radius: 50px;
   margin: 0 10px;
   animation: load 0.8s ease infinite;
-
 }
-
 
 .loader .loading.one {
   animation-delay: 0.3s;
 }
+
 .loader .loading.two {
   animation-delay: 0.4s;
 }
+
 .loader .loading.three {
   animation-delay: 0.5s;
 }
@@ -161,11 +164,52 @@ body {
     height: 20px;
   }
 }
-@media only screen and (max-width: 840px) {
- .row1{
-  display: none;
- }
 
-  
-  /* Your styles here */
+/* Media query for smaller screens */
+@media only screen and (max-width: 840px) {
+  .row1 {
+    display: none;
+  }
 }
+
+@media screen and (max-width: 769px) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* Ensuring .container or #a is visible on smaller screens */
+@media screen and (max-width: 425px) {
+  #a {
+    position: relative;
+    width: 100%;
+    top: 20%;
+    left: 0;
+    padding: 10px;
+    margin: 0;
+     /* Enable vertical scrolling */
+    height: calc(100vh - 20%); /* Adjust height to allow scrolling */
+    z-index: 1;
+  }
+  .container{
+    width: 80%;
+    position: relative;
+    left: 60px;
+  }
+
+  /* Ensure body allows scrolling on small screens */
+  body {
+    overflow-y: auto;
+  }
+  .input-group {
+    position: relative;
+    left: 59px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+}
+
+
+
+

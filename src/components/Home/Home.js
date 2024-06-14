@@ -17,6 +17,9 @@ const apiStatusConstants = {
 };
 
 const Home = () => {
+  useEffect(() => {
+    document.body.style.overflowX = "hidden";
+  }, []);
   const [videosArray, setVideosArray] = useState([]);
   const [originalVideos, setOriginalVideos] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -72,13 +75,8 @@ const Home = () => {
     fetchInputData(inputValue);
   };
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
   const handlechange = (value) => {
-    
     setInputValue(value);
-
   };
 
   const bannerClose = () => {
@@ -206,7 +204,7 @@ const Home = () => {
   return (
     <div id="home-container">
       <section className="nav_bar_component">
-        <Header />
+        <Header style={{ position: "fixed" }} />
       </section>
       <section className="container-fluid mt-3">
         <div className="row">
@@ -218,16 +216,16 @@ const Home = () => {
               <div className="row1">
                 <section
                   className="banner_component text-center d-flex align-items-center justify-content-center"
-                  style={{ position: "relative", left: "-9.6%" }}
+                  style={{ position: "relative", left: "-9.5%",top:"26px" }}
                 >
                   <div className="img-banner">
                     <img
                       src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                      style={{ width: "120px" }}
+                      style={{ width: "100px" }}
                       alt="banner"
                     />
                   </div>
-                  <p className="text">
+                  <p className="text" style={{color:"black"}}>
                     Buy Nxt Watch Premium prepaid plans with <br />
                     <span className="banner-span">UPI</span>
                   </p>
@@ -251,7 +249,7 @@ const Home = () => {
               style={{
                 position: "relative",
                 left: "-90px",
-                top: "-34px",
+                top: "14px",
                 height: "auto",
                 width: "115%",
               }}
@@ -261,7 +259,7 @@ const Home = () => {
                 style={{
                   position: "relative",
                   left: "0px",
-                  top: "20px",
+                  top: "25px",
                   paddingBottom: "20px",
                 }}
               >
@@ -283,7 +281,6 @@ const Home = () => {
                     className="input-group-text"
                     id="basic-addon2"
                     style={{ backgroundColor: "#909090" }}
-                   
                   >
                     <AiOutlineSearch size={20} />
                   </button>

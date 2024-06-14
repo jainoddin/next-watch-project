@@ -1,13 +1,11 @@
+/* Sidebar styles */
 .sidebar-components {
-    
   height: 200vh;
   display: flex;
   position: fixed;
   top: 0%;
   width: 19.2%;
   left: 0;
-
- 
 }
 
 .bgg-white {
@@ -17,50 +15,24 @@
 .bgg-black {
   background-color: rgb(57, 58, 58);
 }
-.bc-black{
+
+.bc-black {
   color: black;
-
 }
-.bc-white{
+
+.bc-white {
   color: white;
-  
 }
-
-/* Add more styles as needed */
-
-
-/* Add this to your CSS file */
-
-
-
-
-
 
 .dark-mode {
   background-color: black;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.NavBar{
-display: flex;
+.NavBar {
+  display: flex;
 }
-.NavigationLgContainer{
+
+.NavigationLgContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -68,87 +40,90 @@ display: flex;
   height: 92%;
   position: fixed;
   margin-top: 60px;
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
 }
-.NavOptions{
+
+.NavOptions {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   list-style-type: none;
   padding: 0px;
   margin-top: 0px;
-  
 }
-.NavLink{
+
+.NavLink {
   text-decoration: none;
 }
-.NavLinkContainer{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-left: 20px;
-}
-.active{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-left: 20px;
-  background-color:Lavender ;
-}
-.NavText{
-  font-family: 'Roboto';
-font-size: 18px;
-margin-left: 15px;
-margin-top: 15px;
 
-}
-.ContactInfo{
+.NavLinkContainer {
   display: flex;
-flex-direction: column;
-padding-left: 20px;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
 }
-.ContactHeading{
+
+.active {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
+  background-color: Lavender;
+}
+
+.NavText {
+  font-family: 'Roboto';
+  font-size: 18px;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.ContactInfo {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.ContactHeading {
   font-family: 'bold';
   font-size: 25px;
   font-weight: bold;
   position: relative;
   top: 30%;
   left: 15px;
- 
 }
-.p{
+
+.p {
   color: white;
 }
-.an{
+
+.an {
   color: rgb(2 6 23);
- 
 }
-.ContactIcons{
+
+.ContactIcons {
   display: flex;
   align-items: center;
   position: relative;
   top: 30%;
   left: 15px;
-
 }
-.ContactImage{
+
+.ContactImage {
   height: 25px;
   width: 25px;
   border-radius: 50px;
   margin-right: 10px;
-
 }
-.ContactNote{
- 
-font-size: 18px;
-font-weight: 400;
-position: relative;
+
+.ContactNote {
+  font-size: 18px;
+  font-weight: 400;
+  position: relative;
   top: 32%;
   left: 15px;
 }
-.NavigationSmallContainer{
+
+.NavigationSmallContainer {
   display: flex;
   width: 100%;
   height: 60px;
@@ -157,23 +132,41 @@ position: relative;
   position: fixed;
   bottom: 0;
   align-items: center;
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
 }
 
-
-
 .text-white {
-  color: white!important;
+  color: white !important;
 }
 
 .text-black {
-  color: black!important;
+  color: black !important;
 }
 
-
-
+@media (max-width: 768px) {
+  .sidebar-components {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+  }
+  .NavigationLgContainer {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .NavOptions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .NavLinkContainer {
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+  }
+}
 
 
 
@@ -310,13 +303,3 @@ position: relative;
 
 
 
-
-
-
-
-
-
-
-
-
- 
