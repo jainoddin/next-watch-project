@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { CgPlayListAdd } from "react-icons/cg";
 import Cookies from "js-cookie";
 import apilist from "../../apilist/Apilist";
+import './Saved.css'
 
 
 const Saved = () => {
@@ -59,13 +60,8 @@ const Saved = () => {
           </div>
 
           <div
-            className="col-md-9 container"
-            style={{
-              position: "absolute",
-              top: "15%",
-              left: "20%",
-              width: "100%",
-            }}
+            className="col-md-9 container5"
+           
           >
             <div className="col-12 vh">
               <section
@@ -73,7 +69,7 @@ const Saved = () => {
                 style={{ position: "relative", left: "-30px", top: "-20px" }}
               >
                 <div style={{ paddingBottom: "10px" }}>
-                  <h1>
+                  <h1 className="hh">
                     <CgPlayListAdd size={45} color="#ff0b37" />
                     <span
                       style={{
@@ -147,8 +143,8 @@ const Saved = () => {
                 ))
             ) : (
                 <>
-                <div>
-                    <img src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png" style={{width:"50%",position:"relative",left:"240px"}}></img>
+                <div className="saveds">
+                    <img className="jj" src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png" ></img>
                     <h1 style={{textAlign:"center",fontSize:"22px"}}><p>No saved videos found</p></h1>
                     <p style={{textAlign:"center"}}>You can save your videos while watching them</p>
                 </div>

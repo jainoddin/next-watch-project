@@ -142,16 +142,16 @@ const Home = () => {
                       />
                     </div>
 
-                    <div className="home_thumbnail_title d-flex">
+                    <div className="home_thumbnail_title d-flex g">
                       <div className="channel_logo channellogo">
-                        <img
+                        <img className="g"
                           src={video.channel_logo}
                           style={{ width: "40px", paddingTop: "10px" }}
                           alt={video.channel_name}
                         />
                       </div>
                       <h6
-                        className="my-3 d-flex"
+                        className="my-3 d-flex c"
                         style={{
                           width: "71%",
                           fontSize: "14px",
@@ -216,7 +216,7 @@ const Home = () => {
               <div className="row1">
                 <section
                   className="banner_component text-center d-flex align-items-center justify-content-center"
-                  style={{ position: "relative", left: "-9.5%",top:"26px" }}
+                  style={{ position: "relative", left: "-9.6%",top:"26px" }}
                 >
                   <div className="img-banner">
                     <img

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import apilist from "../../apilist/Apilist";
+import './Gaming.css'
 
 
 const Gaming = () => {
@@ -56,13 +57,8 @@ const Gaming = () => {
           </div>
 
           <div
-            className="col-md-9 container"
-            style={{
-              position: "absolute",
-              top: "15%",
-              left: "20%",
-              width: "100%",
-            }}
+            className="col-md-9 container4"
+           
           >
             <div className="col-12 vh">
               <section
@@ -79,7 +75,7 @@ const Gaming = () => {
                         position: "relative",
                         top: "3.5px",
                         left: "10px",
-                      }}
+                      }} className="aaa"
                     >
                       Gaming
                     </span>
@@ -117,8 +113,10 @@ const Gaming = () => {
                                   </h6>
                                 </p>
                               </div>
+                              <div  className="pt">
 
                               <p
+                             
                                 style={{
                                   margin: "0",
                                   PaddingBottom: "25px",
@@ -130,6 +128,7 @@ const Gaming = () => {
                               >
                                 {video.views_count} Watching Worldwild
                               </p>
+                              </div>
                             </Link>
                           </p>
                         </div>

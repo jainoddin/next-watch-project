@@ -184,7 +184,7 @@ body {
     position: relative;
     width: 100%;
     top: 20%;
-    left: 0;
+    left: 50;
     padding: 10px;
     margin: 0;
      /* Enable vertical scrolling */
@@ -194,7 +194,11 @@ body {
   .container{
     width: 80%;
     position: relative;
-    left: 60px;
+    left: 250px;
+  }
+  .home_channel_description{
+    position: relative;
+    left: -45%;
   }
 
   /* Ensure body allows scrolling on small screens */
@@ -207,7 +211,20 @@ body {
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 320px) {
+  .home_channel_description{
+    position: relative;
+    left: -90%;
+  }
+  .g{
+    position: relative;
+    left: -130%;
+  }
+  .c{
+    position: relative;
+    left: -25%;
+  }
+ 
 }
 
 

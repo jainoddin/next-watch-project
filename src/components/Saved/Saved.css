@@ -1,0 +1,35 @@
+.container5{
+position: absolute;
+top:15%;
+left: 20%;
+width: 100%;
+}
+.jj{
+width: 50%;
+position: relative;
+left:240px ;
+}
+
+
+
+
+
+
+@media screen and (max-width: 425px) {
+    .container5{
+        position: relative;
+    }
+    .saveds{
+position: relative;
+top: 150px;
+left: -8%;
+    }
+    .jj{
+        position: relative;
+        top: 50%;
+        left: 30%;
+    }
+    .hh{
+        display: none;
+    }
+}

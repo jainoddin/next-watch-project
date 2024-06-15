@@ -34,6 +34,58 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
   }
+  .container4{
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    width: 100%;
+  
+  }
+  @media screen and (max-width: 425px) {
+    .container4{
+        position: relative;
+        top: 25%;
+        left: -40%;
+       
+      
+    }
+    .thumbnail_image{
+      position: relative;
+      left: -150%;
+      width: 150%;
+    }
+    .imgt2{
+      position: relative;
+      left: -50%;
+    }
+    .thumbnail_image{
+      position: relative;
+      left: -100%;
+    }
+    .home_thumbnail_title{
+      position: relative;
+      left: -50%;
+    }
+    .pt{
+      position: relative;
+      left: -50%;
+    }
+    .aaa{
+      display: none;
+    }
+    
+    
+}
+
+@media screen and (max-width: 325px) {
+  .container4{
+      position: relative;
+      top: 25%;
+      left: -50%;
+     
+    
+  }
+}
 
 
   

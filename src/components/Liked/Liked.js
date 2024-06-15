@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 import { AiFillLike } from "react-icons/ai";
 import apilist from "../../apilist/Apilist";
+import './Liked.css'
 
 const Liked = () => {
   const [videosArray, setVideoArray] = useState([]);
@@ -52,13 +53,8 @@ const Liked = () => {
             <Sidebar />
           </div>
           <div
-            className="col-md-9 container"
-            style={{
-              position: "absolute",
-              top: "15%",
-              left: "20%",
-              width: "100%",
-            }}
+            className="col-md-9 container6"
+           
           >
             <div className="col-12 vh">
               <section
@@ -90,16 +86,12 @@ const Liked = () => {
                         className="trending-content"
                         style={{ display: "flex", alignItems: "center" }}
                       >
-                        <img
+                        <img className="imgtt"
                           src={video.thumbnail_url}
-                          style={{
-                            width: "35%",
-                            marginRight: "10px",
-                            padding: "10px",
-                          }}
+                          
                           alt="thumbnail"
                         />
-                        <div>
+                        <div className="text1">
                           <p
                             style={{
                               margin: "0",
