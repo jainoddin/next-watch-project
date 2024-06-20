@@ -13,6 +13,7 @@ import Trending from "./components/Trending/Trending.js";
 import Gaming from "./components/Gaming/Gaming.js";
 import Saved from "./components/Saved/Saved.js";
 import Liked from "./components/Liked/Liked.js";
+import Notfound from './components/nofound/Notfound.js';
 
 
 function App() {
@@ -35,6 +36,8 @@ function App() {
           <Route path="/gaming" element={<Gaming />}></Route>
           <Route path="/saved" element={<Saved />}></Route>
           <Route path="/Liked" element={<Liked />}></Route>
+          <Route path="*" element={<Notfound />}></Route>
+
 
 
           

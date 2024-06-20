@@ -127,7 +127,7 @@ const Home = () => {
               <div
                 className="col-md-4 x"
                 key={video.id}
-                style={{ marginRight: "-20px" }}
+                style={{ marginRight: "-20px" ,paddingBottom:"20px"}}
               >
                 <p>
                   <Link
@@ -150,16 +150,18 @@ const Home = () => {
                           alt={video.channel_name}
                         />
                       </div>
-                      <h6
+                    
+                      <p
                         className="my-3 d-flex c"
                         style={{
                           width: "71%",
                           fontSize: "14px",
-                          paddingLeft: "10px",
+                          paddingLeft: "1px",
                         }}
                       >
                         {video.video_title}
-                      </h6>
+                      </p>
+                      
                     </div>
 
                     <div className="home_channel_description d-flex">
@@ -181,7 +183,11 @@ const Home = () => {
               </div>
             ))
           ) : (
-            <p>No videos found</p>
+            <>
+           
+            <img src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png" style={{width:"40%",position:"relative",left:"20%"}}></img>
+            <p style={{position:"relative",top:"359px",left:"-150px"}}><h2>No videos found</h2></p>
+            </>
           )}
         </div>
       </div>
@@ -259,8 +265,9 @@ const Home = () => {
                 style={{
                   position: "relative",
                   left: "0px",
-                  top: "25px",
-                  paddingBottom: "20px",
+                  top: "30px",
+                  paddingBottom: "30px",
+                  
                 }}
               >
                 <div className="input-group mb-3" style={{ width: "50%" }}>
@@ -270,6 +277,7 @@ const Home = () => {
                     placeholder="Search"
                     aria-label="Search"
                     aria-describedby="basic-addon2"
+                    
                     value={inputValue}
                     onChange={(e) => {
                       handlechange(e.target.value);
@@ -280,7 +288,7 @@ const Home = () => {
                     type="button"
                     className="input-group-text"
                     id="basic-addon2"
-                    style={{ backgroundColor: "#909090" }}
+                   
                   >
                     <AiOutlineSearch size={20} />
                   </button>
