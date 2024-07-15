@@ -11,25 +11,24 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import apilist from "../../apilist/Apilist";
 
-
 const IndividualVideo = () => {
   const [videoDetails, setVideoDetails] = useState({ savedStatus: "Not saved" });
-  const [isDarkMode, setIsDarkMode] = useState(false); 
-  const navigate = useNavigate();// State to manage dark mode
-
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(true); // State for managing animation
+  const navigate = useNavigate();
   const { id } = useParams();
-  
+  const [color,setcolor]=useState("");
+  const [count,setcount]=useState(0)
 
   useEffect(() => {
     fetchVideoDetails();
-    
-    // Check if dark mode is enabled in local storage or user preference
     const darkModeEnabled = localStorage.getItem("darkMode") === "true";
     setIsDarkMode(darkModeEnabled);
     if (darkModeEnabled) {
       document.body.classList.add("dark-mode");
     }
   }, []);
+
   const token = Cookies.get("jwtAuth");
   console.log(token);
 
@@ -41,65 +40,66 @@ const IndividualVideo = () => {
 
   const fetchVideoDetails = async () => {
     try {
-      const response1 = await axios.get( `${apilist.individualgamingvideo}/${id}`);
-      const response2 = await axios.get( `${apilist.individualvideo}/${id}`);
+      const response1 = await axios.get(`${apilist.individualgamingvideo}/${id}`);
+      const response2 = await axios.get(`${apilist.individualvideo}/${id}`);
       setVideoDetails({ ...response1.data, ...response2.data });
     } catch (error) {
       console.log(error);
     }
   };
-
-  
-   
-
-  
-
+console.log("countaa",count)
   const handlelikeSave = async () => {
+    setcount(count+1)
     console.log(`Updating video with ID: ${videoDetails._id}`);
     let success = false;
-  
+
     try {
       const response1 = await axios.put(`${apilist.updatelikevideo}/${videoDetails._id}?liked=true`);
       console.log("First API call success:", response1);
-      success = true; // Mark success if the first call is successful
+      success = true; 
     } catch (error) {
       console.error("Error in first API call:", error);
     }
-  
+
     try {
       const response2 = await axios.put(`${apilist.updategaminglikevideo}/${videoDetails._id}?liked=true`);
       console.log("Second API call success:", response2);
-      success = true; // Mark success if the second call is successful
+      success = true; 
     } catch (error) {
       console.error("Error in second API call:", error);
     }
-  
-    // If at least one API call succeeded, reload the page
-    if (success) {
-      toast.success("Video like successfully updated");
-      window.location.reload();
+
+   
+    if (count % 2 === 0) {
+      setcolor("color1");
+    } else {
+      setcolor("s");
     }
   };
-  
-  
+
+  const handleDoubleClick = () => {
+    setcolor("s")
+    window.location.reload();
+
+    
+  };
 
   const toggleSavedStatus = async () => {
     const newStatus = videoDetails.saved === "Saved" ? "Unsaved" : "Saved";
     setVideoDetails({ ...videoDetails, saved: newStatus });
     let success = false;
 
-    
     try {
       const response1 = await axios.put(`${apilist.updatesavevideo}/${id}/save`, { saved: newStatus });
       console.log("First API call success:", response1);
-      success = true; // Mark success if the first call is successful
+      success = true; 
     } catch (error) {
       console.error("Error in first API call:", error);
     }
     try {
       const response2 = await axios.put(`${apilist.updategamingsavevideo}/${id}/save`, { saved: newStatus });
       console.log("Second API call success:", response2);
-      success = true; // Mark success if the second call is successful
+      success = true; 
     } catch (error) {
       console.error("Error in second API call:", error);
     }
@@ -108,33 +108,28 @@ const IndividualVideo = () => {
       toast.success("Video saved successfully updated");
       window.location.reload();
     }
-
-
-
-
   };
 
   const handledislikeSave = async () => {
     console.log(`Disliking video with ID: ${videoDetails._id}`);
     let success = false;
-  
+
     try {
       const response1 = await axios.put(`${apilist.updateunlikevideo}/${videoDetails._id}?liked=false`);
       console.log("First API call success:", response1);
-      success = true; // Mark success if the first call is successful
+      success = true; 
     } catch (error) {
       console.error("Error in first API call:", error);
     }
-  
+
     try {
       const response2 = await axios.put(`${apilist.updategamingunlikevideo}/${videoDetails._id}?liked=false`);
       console.log("Second API call success:", response2);
-      success = true; // Mark success if the second call is successful
+      success = true; 
     } catch (error) {
       console.error("Error in second API call:", error);
     }
-  
-    // If at least one API call succeeded, reload the page
+
     if (success) {
       toast.success("Video like successfully updated");
       window.location.reload();
@@ -166,32 +161,30 @@ const IndividualVideo = () => {
             </div>
             <div className="col-4">
               <div className="d-flex justify-content-space-between">
-                <p className="mx-2" style={{ fontSize: "13px" ,paddingTop:"4px"}}>{videoDetails.subscribers}</p>
-                <p className="mx-2" style={{ fontSize: "13px",paddingTop:"4px" }}>{videoDetails.published_date}</p>
+                <p className="mx-2" style={{ fontSize: "13px", paddingTop: "4px" }}>{videoDetails.subscribers}</p>
+                <p className="mx-2" style={{ fontSize: "13px", paddingTop: "4px" }}>{videoDetails.published_date}</p>
 
                 <div className="d-flex justify-content-space-between">
                   <button
-                    className="mx-2"
+                    className={`mx-2 ${isAnimating ? "animating" : ""}`}
                     style={{
                       position: "absolute",
                       left: "235%",
                       border: "none",
                       display: "flex",
                       backgroundColor: "transparent",
-                    }} id="likebtn"
+                    }} 
+                    id="likebtn"
                     onClick={handlelikeSave}
+                    onDoubleClick={handleDoubleClick}
                   >
                     <p>
-                    {videoDetails.liked === "true" ? (
-                      <span id="color1">
-                        <i className="ri-thumb-up-fill" id="i"></i>
-                      </span>
-                    ) : (
-                      <>
-                        <i className="ri-thumb-up-fill" id="i"></i>
-                      </>
-                    )}
-                    Like
+                     
+                        <span id={color}>
+                          <i className="ri-thumb-up-fill" id="i"></i>
+                        </span>
+                     
+                      Like
                     </p>
                   </button>
                   <button

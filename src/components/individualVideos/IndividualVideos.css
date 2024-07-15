@@ -4,6 +4,10 @@
     animation: effect 2s linear infinite;
     text-align: bold;
   }
+  #s{
+    font-family: serif;
+    text-align: bold;
+  }
   #saved2 {
     position: absolute;
     top: 0;

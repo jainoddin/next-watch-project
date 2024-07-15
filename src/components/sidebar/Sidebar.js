@@ -9,10 +9,9 @@ import { CgPlayListAdd } from "react-icons/cg";
 import Cookies from "js-cookie";
 import { AiFillLike } from "react-icons/ai";
 
-
 const Sidebar = (props) => {
   useEffect(() => {
-    document.body.style.overflowX = 'hidden';
+    document.body.style.overflowX = "hidden";
   }, []);
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,14 +19,19 @@ const Sidebar = (props) => {
   const activeTabBg = props.data ? "black" : "green";
 
   const [backb, setbackb] = useState("White");
+  const [backbg, setbackbg] = useState("");
+
   const [textcolor, setTextcolor] = useState(true);
 
   useEffect(() => {
     if (props.data === "dark") {
       setbackb("black");
+      setbackbg("Gray");
+
       setTextcolor(true);
     } else if (props.data === "white") {
       setbackb("white");
+      setbackbg("Lavender");
       setTextcolor(false);
     }
   }, [props.data]);
@@ -42,8 +46,7 @@ const Sidebar = (props) => {
       setActiveTab("Gaming");
     } else if (location.pathname === "/saved") {
       setActiveTab("Saved");
-    }
-    else if (location.pathname === "/Liked") {
+    } else if (location.pathname === "/Liked") {
       setActiveTab("Liked");
     }
   }, [location.pathname]);
@@ -52,7 +55,7 @@ const Sidebar = (props) => {
     setActiveTab(tab);
     navigate(path);
   };
-  
+
   const token = localStorage.getItem("token");
   console.log("Token:", token);
 
@@ -73,12 +76,7 @@ const Sidebar = (props) => {
                 <div
                   className={`NavLinkContainer`}
                   style={{
-                    backgroundColor:
-                      props.data === "dark"
-                        ? ""
-                        : activeTab === "Home"
-                        ? "Lavender"
-                        : "",
+                    backgroundColor: activeTab === "Home" ? backbg : "",
                   }}
                   onClick={() => handleTabClick("Home", "/home")}
                 >
@@ -96,7 +94,7 @@ const Sidebar = (props) => {
                 <div
                   className="NavLinkContainer"
                   style={{
-                    backgroundColor: activeTab === "Trending" ? "Lavender" : "",
+                    backgroundColor: activeTab === "Trending" ? backbg : "",
                   }}
                   onClick={() => handleTabClick("Trending", "/trending")}
                 >
@@ -112,7 +110,7 @@ const Sidebar = (props) => {
                 <div
                   className="NavLinkContainer"
                   style={{
-                    backgroundColor: activeTab === "Gaming" ? "Lavender" : "",
+                    backgroundColor: activeTab === "Gaming" ? backbg : "",
                   }}
                   onClick={() => handleTabClick("Gaming", "/gaming")}
                 >
@@ -128,7 +126,7 @@ const Sidebar = (props) => {
                 <div
                   className="NavLinkContainer"
                   style={{
-                    backgroundColor: activeTab === "Saved" ? "Lavender" : "",
+                    backgroundColor: activeTab === "Saved" ? backbg : "",
                   }}
                   onClick={() => handleTabClick("Saved", "/saved")}
                 >
@@ -144,11 +142,11 @@ const Sidebar = (props) => {
                 <div
                   className="NavLinkContainer"
                   style={{
-                    backgroundColor: activeTab === "Liked" ? "Lavender" : "",
+                    backgroundColor: activeTab === "Liked" ? backbg : "",
                   }}
                   onClick={() => handleTabClick("Liked", "/Liked")}
                 >
-                  <AiFillLike 
+                  <AiFillLike
                     size={30}
                     color={activeTab === "Liked" ? "#ff0b37" : "#909090"}
                   />
